@@ -6,7 +6,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 public class Main {
-    public static void main(String args[]){
+    public static void main(String[] args){
 
 //        To save data in table
 //        Student s1 = new Student();
@@ -35,7 +35,48 @@ public class Main {
 
 
 //        To get data from Table
-        Student s2 = null;
+//        Student s2 = null;
+//        SessionFactory sf = new Configuration()
+//                .addAnnotatedClass(com.jason.Student.class)
+//                .configure()
+//                .buildSessionFactory();
+//
+//        Session session = sf.openSession();
+//
+//        s2 = session.get(Student.class, 1);
+//        session.close();
+//        sf.close();
+//
+//        System.out.println(s2);
+
+
+        //  To update data from Table
+//        Student s3 = new Student();
+//        s3.setsName("Riddhi");
+//        s3.setRollNo(2);
+//        s3.setsAge(6);
+//        SessionFactory sf = new Configuration()
+//                .addAnnotatedClass(com.jason.Student.class)
+//                .configure()
+//                .buildSessionFactory();
+//
+//        Session session = sf.openSession();
+//
+//        Transaction transaction = session.beginTransaction();
+//
+//        session.merge(s3);  // if present then update else save
+//
+//        transaction.commit();
+//
+//        session.close();
+//        sf.close();
+//
+//        System.out.println(s3);
+
+
+        //  To delete data from Table
+        Student s4 = new Student();
+
         SessionFactory sf = new Configuration()
                 .addAnnotatedClass(com.jason.Student.class)
                 .configure()
@@ -43,10 +84,17 @@ public class Main {
 
         Session session = sf.openSession();
 
-        s2 = session.get(Student.class, 1);
+        s4 = session.get(Student.class, 4);
+
+        Transaction transaction = session.beginTransaction();
+
+        session.remove(s4);
+
+        transaction.commit();
+
         session.close();
         sf.close();
 
-        System.out.println(s2);
+        System.out.println(s4);
     }
 }
