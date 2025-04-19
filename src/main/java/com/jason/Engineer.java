@@ -1,9 +1,9 @@
 package com.jason;
 
 //import jakarta.persistence.Embedded;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Engineer {
@@ -13,7 +13,8 @@ public class Engineer {
     private String eName;
     private String tech;
 
-    @Embedded
+//    @Embedded
+    @OneToOne
     private Laptop laptop;
 
     public int getEid() {

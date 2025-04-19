@@ -122,6 +122,7 @@ public class Main {
         lp.setBrand("HP");
         lp.setModal("Omen");
         lp.setRam(16);
+        lp.setLid(101);
 
         Engineer e = new Engineer();
         e.setEid(1);
@@ -131,6 +132,7 @@ public class Main {
 
         SessionFactory sf = new Configuration()
                 .addAnnotatedClass(com.jason.Engineer.class)
+                .addAnnotatedClass(com.jason.Laptop.class)
                 .configure()
                 .buildSessionFactory();
 
@@ -138,9 +140,14 @@ public class Main {
 
         Transaction transaction = session.beginTransaction();
 
+        session.persist(lp);
         session.persist(e);
 
         transaction.commit();
+
+        Engineer er = session.get(Engineer.class, 1);
+        System.out.println(er);
+
         session.close();
         sf.close();
 
