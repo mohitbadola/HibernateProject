@@ -98,13 +98,39 @@ public class Main {
 //        System.out.println(s4);
 
 
-        Chad c = new Chad();
-        c.setcAge(12);
-        c.setcName("Ahana");
-        c.setChadNo(1);
+//        Chad c = new Chad();
+//        c.setcAge(12);
+//        c.setcName("Ahana");
+//        c.setChadNo(1);
+//
+//        SessionFactory sf = new Configuration()
+//                .addAnnotatedClass(com.jason.Chad.class)
+//                .configure()
+//                .buildSessionFactory();
+//
+//        Session session = sf.openSession();
+//
+//        Transaction transaction = session.beginTransaction();
+//
+//        session.persist(c);
+//
+//        transaction.commit();
+//        session.close();
+//        sf.close();
+
+        Laptop lp = new Laptop();
+        lp.setBrand("HP");
+        lp.setModal("Omen");
+        lp.setRam(16);
+
+        Engineer e = new Engineer();
+        e.setEid(1);
+        e.seteName("Hecker");
+        e.setTech("Dev");
+        e.setLaptop(lp);
 
         SessionFactory sf = new Configuration()
-                .addAnnotatedClass(com.jason.Chad.class)
+                .addAnnotatedClass(com.jason.Engineer.class)
                 .configure()
                 .buildSessionFactory();
 
@@ -112,7 +138,7 @@ public class Main {
 
         Transaction transaction = session.beginTransaction();
 
-        session.persist(c);
+        session.persist(e);
 
         transaction.commit();
         session.close();
