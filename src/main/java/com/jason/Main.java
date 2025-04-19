@@ -75,26 +75,48 @@ public class Main {
 
 
         //  To delete data from Table
-        Student s4 = new Student();
+//        Student s4 = new Student();
+//
+//        SessionFactory sf = new Configuration()
+//                .addAnnotatedClass(com.jason.Student.class)
+//                .configure()
+//                .buildSessionFactory();
+//
+//        Session session = sf.openSession();
+//
+//        s4 = session.get(Student.class, 4);
+//
+//        Transaction transaction = session.beginTransaction();
+//
+//        session.remove(s4);
+//
+//        transaction.commit();
+//
+//        session.close();
+//        sf.close();
+//
+//        System.out.println(s4);
+
+
+        Chad c = new Chad();
+        c.setcAge(12);
+        c.setcName("Ahana");
+        c.setChadNo(1);
 
         SessionFactory sf = new Configuration()
-                .addAnnotatedClass(com.jason.Student.class)
+                .addAnnotatedClass(com.jason.Chad.class)
                 .configure()
                 .buildSessionFactory();
 
         Session session = sf.openSession();
 
-        s4 = session.get(Student.class, 4);
-
         Transaction transaction = session.beginTransaction();
 
-        session.remove(s4);
+        session.persist(c);
 
         transaction.commit();
-
         session.close();
         sf.close();
 
-        System.out.println(s4);
     }
 }
