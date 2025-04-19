@@ -3,7 +3,10 @@ package com.jason;
 //import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
+//import jakarta.persistence.OneToOne;
+
+import java.util.List;
 
 @Entity
 public class Engineer {
@@ -14,8 +17,11 @@ public class Engineer {
     private String tech;
 
 //    @Embedded
-    @OneToOne
-    private Laptop laptop;
+//    @OneToOne
+//    private Laptop laptop;
+
+    @OneToMany(mappedBy = "engineer")
+    private List<Laptop> laptops;
 
     public int getEid() {
         return eid;
@@ -41,12 +47,12 @@ public class Engineer {
         this.tech = tech;
     }
 
-    public Laptop getLaptop() {
-        return laptop;
+    public List<Laptop> getLaptops() {
+        return laptops;
     }
 
-    public void setLaptop(Laptop laptop) {
-        this.laptop = laptop;
+    public void setLaptops(List<Laptop> laptops) {
+        this.laptops = laptops;
     }
 
     @Override
@@ -55,7 +61,7 @@ public class Engineer {
                 "eid=" + eid +
                 ", eName='" + eName + '\'' +
                 ", tech='" + tech + '\'' +
-                ", laptop=" + laptop +
+                ", laptops=" + laptops +
                 '}';
     }
 }

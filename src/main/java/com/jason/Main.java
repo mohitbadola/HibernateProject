@@ -5,6 +5,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args){
 
@@ -118,17 +120,23 @@ public class Main {
 //        session.close();
 //        sf.close();
 
-        Laptop lp = new Laptop();
-        lp.setBrand("HP");
-        lp.setModal("Omen");
-        lp.setRam(16);
-        lp.setLid(101);
+        Laptop lp1 = new Laptop();
+        lp1.setBrand("HP");
+        lp1.setModal("Omen");
+        lp1.setRam(16);
+        lp1.setLid(101);
+
+        Laptop lp2 = new Laptop();
+        lp2.setBrand("Asus");
+        lp2.setModal("Rog");
+        lp2.setRam(32);
+        lp2.setLid(102);
 
         Engineer e = new Engineer();
         e.setEid(1);
         e.seteName("Hecker");
         e.setTech("Dev");
-        e.setLaptop(lp);
+        e.setLaptops(Arrays.asList(lp1, lp2));
 
         SessionFactory sf = new Configuration()
                 .addAnnotatedClass(com.jason.Engineer.class)
@@ -140,7 +148,8 @@ public class Main {
 
         Transaction transaction = session.beginTransaction();
 
-        session.persist(lp);
+        session.persist(lp1);
+        session.persist(lp2);
         session.persist(e);
 
         transaction.commit();
