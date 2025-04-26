@@ -19,7 +19,7 @@ public class Engineer {
 //    private Laptop laptop;
 
 //    Lazy Fetch: Load data only when needed
-//    Eager Fetch: Load data immediately with parent
+//    Eager Fetch: Load data immediately with parent (slows performance)
     @OneToMany(fetch = FetchType.EAGER)     //it uses LAZY as default
     private List<Laptop> laptops;
 
