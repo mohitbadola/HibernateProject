@@ -20,8 +20,8 @@ public class Laptop {
 //    @ManyToOne
 //    private Engineer engineer;
 
-    @ManyToMany(mappedBy = "laptops")
-    private List<Engineer> engineer;
+//    @ManyToMany(mappedBy = "laptops")
+//    private List<Engineer> engineer;
 
     public int getLid() {
         return lid;
@@ -64,13 +64,13 @@ public class Laptop {
 //    }
 
 
-    public List<Engineer> getEngineer() {
-        return engineer;
-    }
-
-    public void setEngineer(List<Engineer> engineer) {
-        this.engineer = engineer;
-    }
+//    public List<Engineer> getEngineer() {
+//        return engineer;
+//    }
+//
+//    public void setEngineer(List<Engineer> engineer) {
+//        this.engineer = engineer;
+//    }
 
     @Override
     public String toString() {

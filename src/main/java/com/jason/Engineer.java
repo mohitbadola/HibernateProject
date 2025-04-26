@@ -1,10 +1,7 @@
 package com.jason;
 
 //import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 //import jakarta.persistence.OneToOne;
 
 import java.util.List;
@@ -21,11 +18,13 @@ public class Engineer {
 //    @OneToOne
 //    private Laptop laptop;
 
-//    @OneToMany(mappedBy = "engineer")
-//    private List<Laptop> laptops;
-
-    @ManyToMany
+//    Lazy Fetch: Load data only when needed
+//    Eager Fetch: Load data immediately with parent
+    @OneToMany(fetch = FetchType.EAGER)     //it uses LAZY as default
     private List<Laptop> laptops;
+
+//    @ManyToMany
+//    private List<Laptop> laptops;
 
     public int getEid() {
         return eid;

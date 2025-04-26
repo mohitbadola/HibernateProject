@@ -148,18 +148,23 @@ public class Main {
         e2.seteName("ChadHecker");
         e2.setTech("Python");
 
-        Engineer e3 = new Engineer();
-        e3.setEid(3);
-        e3.seteName("GigaHecker");
-        e3.setTech("AI");
+//        Engineer e3 = new Engineer();
+//        e3.setEid(3);
+//        e3.seteName("GigaHecker");
+//        e3.setTech("AI");
+
+//        e.setLaptops(Arrays.asList(lp1, lp2));
+//        e2.setLaptops(Arrays.asList(lp2, lp3));
+//        e3.setLaptops(Arrays.asList(lp1));
+
+
+//        lp1.setEngineer(Arrays.asList(e, e3));
+//        lp2.setEngineer(Arrays.asList(e, e2));
+//        lp3.setEngineer(Arrays.asList(e2));
+
 
         e.setLaptops(Arrays.asList(lp1, lp2));
-        e2.setLaptops(Arrays.asList(lp2, lp3));
-        e3.setLaptops(Arrays.asList(lp1));
-
-        lp1.setEngineer(Arrays.asList(e, e3));
-        lp2.setEngineer(Arrays.asList(e, e2));
-        lp3.setEngineer(Arrays.asList(e2));
+        e2.setLaptops(Arrays.asList(lp3));
 
 
 
@@ -178,16 +183,23 @@ public class Main {
         session.persist(lp1);
         session.persist(lp2);
         session.persist(lp3);
+
         session.persist(e);
         session.persist(e2);
-        session.persist(e3);
+
+//        session.persist(e3);
 
         transaction.commit();
 
-        Engineer er = session.get(Engineer.class, 2);
-        System.out.println(er);
+//        Engineer er = session.get(Engineer.class, 1);
+//        System.out.println(er);
 
         session.close();
+
+        Session session2 = sf.openSession();
+        Engineer er2 = session2.get(Engineer.class, 1);
+        session2.close();
+
         sf.close();
 
     }
