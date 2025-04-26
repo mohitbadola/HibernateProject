@@ -3,6 +3,7 @@ package com.jason;
 //import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 //import jakarta.persistence.OneToOne;
 
@@ -20,7 +21,10 @@ public class Engineer {
 //    @OneToOne
 //    private Laptop laptop;
 
-    @OneToMany(mappedBy = "engineer")
+//    @OneToMany(mappedBy = "engineer")
+//    private List<Laptop> laptops;
+
+    @ManyToMany
     private List<Laptop> laptops;
 
     public int getEid() {
