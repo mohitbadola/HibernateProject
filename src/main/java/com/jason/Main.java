@@ -1,11 +1,13 @@
 package com.jason;
 
+import jakarta.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args){
@@ -120,33 +122,33 @@ public class Main {
 //        session.close();
 //        sf.close();
 
-        Laptop lp1 = new Laptop();
-        lp1.setBrand("HP");
-        lp1.setModal("Omen");
-        lp1.setRam(16);
-        lp1.setLid(101);
-
-        Laptop lp2 = new Laptop();
-        lp2.setBrand("Asus");
-        lp2.setModal("Rog");
-        lp2.setRam(32);
-        lp2.setLid(102);
-
-        Laptop lp3 = new Laptop();
-        lp3.setBrand("Acer");
-        lp3.setModal("Nitro");
-        lp3.setRam(8);
-        lp3.setLid(103);
-
-        Engineer e = new Engineer();
-        e.setEid(1);
-        e.seteName("Hecker");
-        e.setTech("Dev");
-
-        Engineer e2 = new Engineer();
-        e2.setEid(2);
-        e2.seteName("ChadHecker");
-        e2.setTech("Python");
+//        Laptop lp1 = new Laptop();
+//        lp1.setBrand("HP");
+//        lp1.setModal("Omen");
+//        lp1.setRam(16);
+//        lp1.setLid(101);
+//
+//        Laptop lp2 = new Laptop();
+//        lp2.setBrand("Asus");
+//        lp2.setModal("Rog");
+//        lp2.setRam(32);
+//        lp2.setLid(102);
+//
+//        Laptop lp3 = new Laptop();
+//        lp3.setBrand("Acer");
+//        lp3.setModal("Nitro");
+//        lp3.setRam(8);
+//        lp3.setLid(103);
+//
+//        Engineer e = new Engineer();
+//        e.setEid(1);
+//        e.seteName("Hecker");
+//        e.setTech("Dev");
+//
+//        Engineer e2 = new Engineer();
+//        e2.setEid(2);
+//        e2.seteName("ChadHecker");
+//        e2.setTech("Python");
 
 //        Engineer e3 = new Engineer();
 //        e3.setEid(3);
@@ -163,43 +165,65 @@ public class Main {
 //        lp3.setEngineer(Arrays.asList(e2));
 
 
-        e.setLaptops(Arrays.asList(lp1, lp2));
-        e2.setLaptops(Arrays.asList(lp3));
+//        e.setLaptops(Arrays.asList(lp1, lp2));
+//        e2.setLaptops(Arrays.asList(lp3));
 
 
+//        Laptop lp1 = new Laptop();
+//        lp1.setBrand("HP");
+//        lp1.setModal("Victus");
+//        lp1.setRam(8);
+//        lp1.setLid(104);
 
 
+//        SessionFactory sf = new Configuration()
+//                .addAnnotatedClass(com.jason.Engineer.class)
+//                .addAnnotatedClass(com.jason.Laptop.class)
+//                .configure()
+//                .buildSessionFactory();
 
-        SessionFactory sf = new Configuration()
-                .addAnnotatedClass(com.jason.Engineer.class)
-                .addAnnotatedClass(com.jason.Laptop.class)
-                .configure()
-                .buildSessionFactory();
+//        Session session = sf.openSession();
 
-        Session session = sf.openSession();
+//        Transaction transaction = session.beginTransaction();
 
-        Transaction transaction = session.beginTransaction();
-
-        session.persist(lp1);
-        session.persist(lp2);
-        session.persist(lp3);
-
-        session.persist(e);
-        session.persist(e2);
+//        session.persist(lp1);
+//        session.persist(lp2);
+//        session.persist(lp3);
+//
+//        session.persist(e);
+//        session.persist(e2);
 
 //        session.persist(e3);
 
-        transaction.commit();
+//        transaction.commit();
 
 //        Engineer er = session.get(Engineer.class, 1);
 //        System.out.println(er);
 
-        session.close();
+//        session.close();
 
-        Session session2 = sf.openSession();
-        Engineer er2 = session2.get(Engineer.class, 1);
-        session2.close();
+//        Session session2 = sf.openSession();
+//        Engineer er2 = session2.get(Engineer.class, 1);
+//        session2.close();
 
+//        sf.close();
+
+        SessionFactory sf = new Configuration()
+                .addAnnotatedClass(com.jason.Laptop.class)
+                .configure()
+                .buildSessionFactory();
+
+        Session s = sf.openSession();
+
+//        Laptop l1 = s.get(Laptop.class, 104);
+//        System.out.println(l1);
+
+//        HQL
+        Query query = s.createQuery("from Laptop where Ram = 8", Laptop.class);
+        List<Laptop> Laptops = query.getResultList();
+        System.out.println(Laptops);
+
+        s.close();
         sf.close();
 
     }
