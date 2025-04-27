@@ -219,7 +219,8 @@ public class Main {
 //        System.out.println(l1);
 
 //        HQL
-        Query query = s.createQuery("from Laptop where Ram = 8", Laptop.class);
+//        Query query = s.createQuery("from Laptop where Ram = 8", Laptop.class);
+        Query query = s.createQuery("from Laptop where brand Like 'HP'", Laptop.class);
         List<Laptop> Laptops = query.getResultList();
         System.out.println(Laptops);
 
