@@ -1,5 +1,6 @@
 package com.jason;
 
+import org.hibernate.LazyInitializationException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -240,14 +241,22 @@ public class Main {
 //            System.out.println((String) data[0] + " " +(String) data[1]);
 //        }
 
-        String brand = "HP";
-        Query<Object[]> query = s.createQuery("Select brand, Modal from Laptop where brand like ?1", Object[].class);
-        query.setParameter(1, brand);
-        List<Object[]> laptops = query.getResultList();
-        for (Object[] data : laptops) {
-            System.out.println((String) data[0] + " : " + (String) data[1]);
-        }
+//        String brand = "HP";
+//        Query<Object[]> query = s.createQuery("Select brand, Modal from Laptop where brand like ?1", Object[].class);
+//        query.setParameter(1, brand);
+//        List<Object[]> laptops = query.getResultList();
+//        for (Object[] data : laptops) {
+//            System.out.println((String) data[0] + " : " + (String) data[1]);
+//        }
 
+//      load -> LAZY
+//      get -> EAGER
+//        Depricated
+//        Laptop lpy = s.load(Laptop.class, 101);
+
+//        alternative of load
+        Laptop lpy = s.byId(Laptop.class).getReference(102);
+        System.out.println(lpy);
 
         s.close();
         sf.close();
