@@ -1,10 +1,10 @@
 package com.jason;
 
-import jakarta.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import java.util.Arrays;
 import java.util.List;
@@ -220,9 +220,34 @@ public class Main {
 
 //        HQL
 //        Query query = s.createQuery("from Laptop where Ram = 8", Laptop.class);
-        Query query = s.createQuery("from Laptop where brand Like 'HP'", Laptop.class);
-        List<Laptop> Laptops = query.getResultList();
-        System.out.println(Laptops);
+//        Query query = s.createQuery("from Laptop where brand Like 'HP'", Laptop.class);
+//        List<Laptop> Laptops = query.getResultList();
+//        System.out.println(Laptops);
+
+//        String brand = "HP";
+//        Query query = s.createQuery("from Laptop where brand like ?1", Laptop.class);
+//        query.setParameter(1, brand);
+//        List<Laptop> Laptops = query.getResultList();
+//        System.out.println(Laptops);
+
+
+//        Deprecated
+//        String brand = "HP";
+//        Query query = s.createQuery("Select brand, Modal from Laptop where brand like ?1");
+//        query.setParameter(1, brand);
+//        List<Object[]> Laptops = query.getResultList();
+//        for(Object[] data : Laptops) {
+//            System.out.println((String) data[0] + " " +(String) data[1]);
+//        }
+
+        String brand = "HP";
+        Query<Object[]> query = s.createQuery("Select brand, Modal from Laptop where brand like ?1", Object[].class);
+        query.setParameter(1, brand);
+        List<Object[]> laptops = query.getResultList();
+        for (Object[] data : laptops) {
+            System.out.println((String) data[0] + " : " + (String) data[1]);
+        }
+
 
         s.close();
         sf.close();
